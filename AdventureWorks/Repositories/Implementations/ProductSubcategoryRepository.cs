@@ -5,9 +5,9 @@ namespace AdventureWorks.Repositories.Interfaces
 {
     public class ProductSubcategoryRepository : IProductSubcategoryRepository
     {
-        private readonly DbContext _context;
+        private readonly AdventureWorksContext _context;
 
-        public ProductSubcategoryRepository(DbContext context)
+        public ProductSubcategoryRepository(AdventureWorksContext context)
         {
             _context = context;
         }
@@ -15,21 +15,21 @@ namespace AdventureWorks.Repositories.Interfaces
         public async Task<IEnumerable<ProductSubcategory>> GetAllAsync()
         {
             return await _context.Set<ProductSubcategory>()
-                .Include(ps => ps.Products)
+                .Include(ps => ps.ProductSubcategoryId)
                 .ToListAsync();
         }
 
         public async Task<ProductSubcategory> GetByIdAsync(int id)
         {
             return await _context.Set<ProductSubcategory>()
-                .Include(ps => ps.Products)
+                .Include(ps => ps.ProductSubcategoryId)
                 .FirstOrDefaultAsync(ps => ps.ProductSubcategoryId == id);
         }
 
         public async Task<IEnumerable<ProductSubcategory>> GetByCategoryAsync(int categoryId)
         {
             return await _context.Set<ProductSubcategory>()
-                .Where(ps => ps.ProductCategoryId == categoryId)
+                .Where(ps => ps.ProductSubcategoryId == categoryId)
                 .ToListAsync();
         }
 

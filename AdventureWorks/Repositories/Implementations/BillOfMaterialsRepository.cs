@@ -19,8 +19,8 @@ namespace AdventureWorks.Repositories.Implementations
         public async Task<IEnumerable<BillOfMaterials>> GetAllAsync()
         {
             return await _context.BillOfMaterials
-                .Include(b => b.ProductAssembly)
-                .Include(b => b.Component)
+                .Include(b => b.ProductAssemblyId)
+                .Include(b => b.ComponentId)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -28,7 +28,7 @@ namespace AdventureWorks.Repositories.Implementations
         public async Task<BillOfMaterials?> GetByIdAsync(int id)
         {
             return await _context.BillOfMaterials
-                .Include(b => b.Component)
+                .Include(b => b.ComponentId)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.BillOfMaterialsId == id);
         }
@@ -37,7 +37,7 @@ namespace AdventureWorks.Repositories.Implementations
         {
             return await _context.BillOfMaterials
                 .Where(b => b.ProductAssemblyId == productAssemblyId)
-                .Include(b => b.Component)
+                .Include(b => b.ComponentId)
                 .AsNoTracking()
                 .ToListAsync();
         }

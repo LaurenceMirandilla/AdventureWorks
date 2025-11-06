@@ -1,7 +1,8 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductModelProductDescriptionCulture
+    public  class ProductModelProductDescriptionCulture
     {
+        public int ProductModelProductDescriptionCultureId { get; set; }
         public int ProductModelId { get; set; }
         public int ProductDescriptionId { get; set; }
         public string CultureId { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductDescription
+    public class ProductDescription
     {
         public int ProductDescriptionId { get; set; }
         public string Description { get; set; }

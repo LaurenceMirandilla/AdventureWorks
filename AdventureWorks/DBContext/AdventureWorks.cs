@@ -58,6 +58,11 @@ namespace AdventureWorks
             modelBuilder.Entity<UnitMeasure>().ToTable("UnitMeasure");
             modelBuilder.Entity<WorkOrder>().ToTable("WorkOrder");
             modelBuilder.Entity<WorkOrderRouting>().ToTable("WorkOrderRouting");
+            modelBuilder.Entity<WorkOrderRouting>()
+            .HasOne(wr => wr.WorkOrder)
+            .WithMany(w => w.WorkOrderRoutings)
+            .HasForeignKey(wr => wr.WorkOrderId)
+            .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<ScrapReason>().ToTable("ScrapReason");
             modelBuilder.Entity<BillOfMaterials>().ToTable("BillOfMaterials");
             modelBuilder.Entity<Culture>().ToTable("Culture");

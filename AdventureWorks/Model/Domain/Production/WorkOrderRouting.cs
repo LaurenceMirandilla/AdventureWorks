@@ -1,17 +1,20 @@
-﻿namespace AdventureWorks.Model.Domain.Production
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AdventureWorks.Model.Domain.Production
 
 
 {
-    public partial class WorkOrderRouting
+    public  class WorkOrderRouting
     {
-        public int WorkOrderId { get; set; }
         public int ProductId { get; set; }
+        [Key]
         public short OperationSequence { get; set; }
+        public int WorkOrderId { get; set; }
         public short LocationId { get; set; }
-        public decimal ScheduledStartDate { get; set; }
-        public decimal ScheduledEndDate { get; set; }
-        public decimal? ActualStartDate { get; set; }
-        public decimal? ActualEndDate { get; set; }
+        public DateTime ScheduledStartDate { get; set; }
+        public DateTime ScheduledEndDate { get; set; }
+        public DateTime? ActualStartDate { get; set; }
+        public DateTime? ActualEndDate { get; set; }
         public decimal? ActualResourceHrs { get; set; }
         public decimal PlannedCost { get; set; }
         public decimal? ActualCost { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class Culture
+    public class Culture
     {
         public Culture()
         {

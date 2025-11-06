@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductCategory
+    public  class ProductCategory
     {
         public ProductCategory()
         {

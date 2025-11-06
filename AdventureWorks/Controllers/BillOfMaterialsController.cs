@@ -1,9 +1,10 @@
-﻿using AdventureWorks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using AdventureWorks;
 using AdventureWorks.DTO;
 using AdventureWorks.Model.Domain.Production;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AdventureWorks.Controllers
 {

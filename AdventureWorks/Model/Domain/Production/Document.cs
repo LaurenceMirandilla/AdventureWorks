@@ -1,14 +1,16 @@
-﻿namespace AdventureWorks.Model.Domain.Production
+﻿using Microsoft.SqlServer.Types;
+using System.ComponentModel.DataAnnotations;
+
+namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class Document
+    public class Document
     {
         public Document()
         {
             ProductDocuments = new HashSet<ProductDocument>();
         }
-
+        [Key]
         public string DocumentNode { get; set; }
-        public byte[] DocumentSummary { get; set; }
         public string Title { get; set; }
         public string FileExtension { get; set; }
         public string FileName { get; set; }

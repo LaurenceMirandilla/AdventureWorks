@@ -28,42 +28,48 @@ namespace AdventureWorks.Controllers
 
         // ✅ GET ALL (filter, sort, pagination)
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] QueryParameters query)
+        public async Task<IActionResult> GetAll(
+    [FromQuery] string? search,
+    [FromQuery] string? sortBy,
+    [FromQuery] bool descending = false,
+    [FromQuery] int page = 1,
+    [FromQuery] int pageSize = 10)
         {
             var products = _context.Products.AsQueryable();
 
             // 🔍 Filtering
-            if (!string.IsNullOrWhiteSpace(query.Search))
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                products = products.Where(p => p.Name.Contains(query.Search) || p.ProductNumber.Contains(query.Search));
+                products = products.Where(p => p.Name.Contains(search) || p.ProductNumber.Contains(search));
             }
 
             // ↕️ Sorting
-            products = query.SortBy?.ToLower() switch
+            products = sortBy?.ToLower() switch
             {
-                "name" => query.Descending ? products.OrderByDescending(p => p.Name) : products.OrderBy(p => p.Name),
-                "price" => query.Descending ? products.OrderByDescending(p => p.ListPrice) : products.OrderBy(p => p.ListPrice),
+                "name" => descending ? products.OrderByDescending(p => p.Name) : products.OrderBy(p => p.Name),
+                "price" => descending ? products.OrderByDescending(p => p.ListPrice) : products.OrderBy(p => p.ListPrice),
                 _ => products.OrderBy(p => p.ProductId)
             };
 
             // 📄 Pagination
             var totalItems = await products.CountAsync();
-            var totalPages = (int)Math.Ceiling(totalItems / (double)query.PageSize);
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
             var data = await products
-                .Skip((query.Page - 1) * query.PageSize)
-                .Take(query.PageSize)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
             return Ok(new
             {
-                query.Page,
-                query.PageSize,
+                Page = page,
+                PageSize = pageSize,
                 TotalItems = totalItems,
                 TotalPages = totalPages,
                 Data = data
             });
         }
+
 
         // ✅ GET BY ID
         [HttpGet("{id}")]

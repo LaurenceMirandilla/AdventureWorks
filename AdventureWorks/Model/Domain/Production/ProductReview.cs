@@ -2,7 +2,7 @@
 
 
 {
-    public partial class ProductReview
+    public  class ProductReview
     {
         public int ProductReviewId { get; set; }
         public int ProductId { get; set; }

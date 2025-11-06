@@ -1,7 +1,8 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductProductPhoto
+    public  class ProductProductPhoto
     {
+        public int ProductProductPhotoId { get; set; }
         public int ProductId { get; set; }
         public int ProductPhotoId { get; set; }
         public bool Primary { get; set; }

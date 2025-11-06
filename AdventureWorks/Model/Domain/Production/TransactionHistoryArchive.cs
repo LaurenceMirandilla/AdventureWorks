@@ -1,9 +1,13 @@
-﻿namespace AdventureWorks.Model.Domain.Production
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AdventureWorks.Model.Domain.Production
 
 
 {
-    public partial class TransactionHistoryArchive
+    public 
+        class TransactionHistoryArchive
     {
+        [Key]
         public int TransactionId { get; set; }
         public int ProductId { get; set; }
         public int ReferenceOrderId { get; set; }

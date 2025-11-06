@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class Illustration
+    public class Illustration
     {
         public Illustration()
         {

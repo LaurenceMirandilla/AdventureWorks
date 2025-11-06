@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class Product
+    public class Product
     {
         public Product()
         {
@@ -39,8 +39,6 @@
         public DateTime ModifiedDate { get; set; }
 
         public virtual ProductModel ProductModel { get; set; }
-        public virtual UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
-        public virtual UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
         public virtual ICollection<BillOfMaterials> BillOfMaterials { get; set; }
         public virtual ICollection<ProductCostHistory> ProductCostHistory { get; set; }
         public virtual ICollection<ProductInventory> ProductInventories { get; set; }

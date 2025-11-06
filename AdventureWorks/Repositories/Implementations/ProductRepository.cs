@@ -5,9 +5,9 @@ namespace AdventureWorks.Repositories.Interfaces
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DbContext _context;
+        private readonly AdventureWorksContext _context;
 
-        public ProductRepository(DbContext context)
+        public ProductRepository(AdventureWorksContext context)
         {
             _context = context;
         }
@@ -16,7 +16,7 @@ namespace AdventureWorks.Repositories.Interfaces
         {
             return await _context.Set<Product>()
                 .Include(p => p.ProductModel)
-                .Include(p => p.ProductSubcategory)
+                .Include(p => p.ProductSubcategoryId)
                 .ToListAsync();
         }
 

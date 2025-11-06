@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class WorkOrder
+    public  class WorkOrder
     {
         public WorkOrder()
         {

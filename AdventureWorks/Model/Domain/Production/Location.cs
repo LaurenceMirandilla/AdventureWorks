@@ -1,6 +1,6 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class Location
+    public  class Location
     {
         public Location()
         {

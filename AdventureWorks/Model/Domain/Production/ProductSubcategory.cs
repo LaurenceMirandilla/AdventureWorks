@@ -1,11 +1,7 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductSubcategory
+    public class ProductSubcategory
     {
-        public ProductSubcategory()
-        {
-            Products = new HashSet<Product>();
-        }
 
         public int ProductSubcategoryId { get; set; }
         public int ProductCategoryId { get; set; }
@@ -14,7 +10,7 @@
         public DateTime ModifiedDate { get; set; }
 
         public virtual ProductCategory ProductCategory { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Product Products { get; set; }
     }
 }
 

@@ -24,42 +24,6 @@ namespace AdventureWorks.Controllers
             _validator = new ProductCategoryValidator();
         }
 
-        // ✅ GET ALL
-        [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] QueryParameters query)
-        {
-            var categories = _context.ProductCategories.AsQueryable();
-
-            // 🔍 Filtering
-            if (!string.IsNullOrWhiteSpace(query.Search))
-                categories = categories.Where(c => c.Name.Contains(query.Search));
-
-            // ↕️ Sorting
-            categories = query.SortBy?.ToLower() switch
-            {
-                "name" => query.Descending ? categories.OrderByDescending(c => c.Name) : categories.OrderBy(c => c.Name),
-                _ => categories.OrderBy(c => c.ProductCategoryId)
-            };
-
-            // 📄 Pagination
-            var totalItems = await categories.CountAsync();
-            var totalPages = (int)Math.Ceiling(totalItems / (double)query.PageSize);
-            var data = await categories
-                .Skip((query.Page - 1) * query.PageSize)
-                .Take(query.PageSize)
-                .ProjectTo<ProductCategoryDTO>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-
-            return Ok(new
-            {
-                query.Page,
-                query.PageSize,
-                TotalItems = totalItems,
-                TotalPages = totalPages,
-                Data = data
-            });
-        }
-
         // ✅ GET BY ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductCategoryDTO>> GetById(int id)
@@ -69,6 +33,51 @@ namespace AdventureWorks.Controllers
 
             return Ok(_mapper.Map<ProductCategoryDTO>(entity));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] string? search,[FromQuery] string? sortBy,
+        [FromQuery] bool descending = false, [FromQuery] int page = 1,[FromQuery] int pageSize = 10)
+        {
+            var categories = _context.ProductCategories.AsQueryable();
+
+            // 🔍 Filtering
+            if (!string.IsNullOrWhiteSpace(search))
+                categories = categories.Where(c => c.Name.Contains(search));
+
+            // ↕️ Sorting
+            categories = sortBy?.ToLower() switch
+            {
+                "name" => descending ? categories.OrderByDescending(c => c.Name) : categories.OrderBy(c => c.Name),
+                _ => categories.OrderBy(c => c.ProductCategoryId)
+            };
+
+            // 📄 Pagination
+            var totalItems = await categories.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            var data = await categories
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ProjectTo<ProductCategoryDTO>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return Ok(new
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                Data = data
+            });
+        }
+
+
+
+
+
+
+
+
+
 
         // ✅ ADD
         [HttpPost]

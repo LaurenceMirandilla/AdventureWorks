@@ -2,7 +2,7 @@
 
 
 {
-    public partial class ScrapReason
+    public class ScrapReason
     {
         public ScrapReason()
         {

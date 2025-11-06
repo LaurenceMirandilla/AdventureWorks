@@ -1,7 +1,8 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductListPriceHistory
+    public  class ProductListPriceHistory
     {
+        public int ProductListPriceHistoryId { get; set; }
         public int ProductId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }

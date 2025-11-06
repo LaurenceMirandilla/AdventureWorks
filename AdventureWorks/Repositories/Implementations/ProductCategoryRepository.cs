@@ -5,9 +5,9 @@ namespace AdventureWorks.Repositories.Interfaces
 {
     public class ProductCategoryRepository : IProductCategoryRepository
     {
-        private readonly DbContext _context;
+        private readonly AdventureWorksContext _context;
 
-        public ProductCategoryRepository(DbContext context)
+        public ProductCategoryRepository(AdventureWorksContext context)
         {
             _context = context;
         }

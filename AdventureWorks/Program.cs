@@ -4,7 +4,13 @@ using AdventureWorks.Model.Domain.Production;
 using AdventureWorks.Repositories.Implementations;
 using AdventureWorks.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -48,6 +54,7 @@ internal class Program
 
         IMapper mapper = mapperConfig.CreateMapper();
         builder.Services.AddSingleton(mapper);
+        builder.Services.AddScoped<IProductSubcategoryRepository, ProductSubcategoryRepository>();
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
         builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
         builder.Services.AddScoped<IProductDescriptionRepository, ProductDescriptionRepository>();
@@ -74,7 +81,57 @@ internal class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+
+        // Configure Swagger with Bearer JWT support so "Authorize" appears in Swagger UI
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdventureWorks API", Version = "v1" });
+
+            var jwtSecurityScheme = new OpenApiSecurityScheme
+            {
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Description = "Enter JWT token. Example: \"eyJhbGci...\" (no 'Bearer ' prefix required)",
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+
+            c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                { jwtSecurityScheme, new string[] { } }
+            });
+        });
+
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            };
+        });
+
+        // Authorization must be registered before Build()`
+        builder.Services.AddAuthorization();
 
         var app = builder.Build();
 
@@ -84,9 +141,12 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+
         app.UseHttpsRedirection();
+        app.UseAuthentication(); // must be before UseAuthorization
         app.UseAuthorization();
         app.MapControllers();
         app.Run();
     }
 }
+

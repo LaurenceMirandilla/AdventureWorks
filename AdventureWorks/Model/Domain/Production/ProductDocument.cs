@@ -1,7 +1,8 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductDocument
+    public  class ProductDocument
     {
+        public int ProductDocumentId { get; set; }
         public int ProductId { get; set; }
         public string DocumentNode { get; set; }
         public DateTime ModifiedDate { get; set; }

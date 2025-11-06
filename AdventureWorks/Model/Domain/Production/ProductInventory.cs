@@ -1,7 +1,8 @@
 ﻿namespace AdventureWorks.Model.Domain.Production
 {
-    public partial class ProductInventory
+    public  class ProductInventory
     {
+        public int ProductInventoryId { get; set; }
         public int ProductId { get; set; }
         public short LocationId { get; set; }
         public string Shelf { get; set; }

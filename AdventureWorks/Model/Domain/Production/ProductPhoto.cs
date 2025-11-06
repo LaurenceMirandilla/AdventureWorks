@@ -2,7 +2,7 @@
 
 
 {
-    public partial class ProductPhoto
+    public  class ProductPhoto
     {
         public ProductPhoto()
         {
@@ -19,3 +19,4 @@
         public virtual ICollection<ProductProductPhoto> ProductProductPhotos { get; set; }
     }
 }
+//???????????????

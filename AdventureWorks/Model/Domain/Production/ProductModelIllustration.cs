@@ -2,8 +2,9 @@
 
 
 {
-    public partial class ProductModelIllustration
+    public  class ProductModelIllustration
     {
+        public int ProductModelIllustrationId { get; set; }
         public int ProductModelId { get; set; }
         public int IllustrationId { get; set; }
         public DateTime ModifiedDate { get; set; }
