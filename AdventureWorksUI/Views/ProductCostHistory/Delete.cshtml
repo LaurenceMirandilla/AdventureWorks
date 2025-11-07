@@ -1,0 +1,42 @@
+﻿@model AdventureWorksUI.DTO.ProductCostHistoryViewModel
+
+@{
+    ViewData["Title"] = "Delete Product Cost History";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="alert alert-warning">
+    Are you sure you want to delete this record?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">ProductCostHistoryId</dt>
+    <dd class="col-sm-9">@Model.ProductCostHistoryId</dd>
+
+    <dt class="col-sm-3">Product ID</dt>
+    <dd class="col-sm-9">@Model.ProductId</dd>
+
+    <dt class="col-sm-3">Start Date</dt>
+    <dd class="col-sm-9">@Model.StartDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-3">End Date</dt>
+    <dd class="col-sm-9">@Model.EndDate?.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-3">Standard Cost</dt>
+    <dd class="col-sm-9">@Model.StandardCost.ToString("C")</dd>
+
+    <dt class="col-sm-3">Modified Date</dt>
+    <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ProductCostHistoryId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

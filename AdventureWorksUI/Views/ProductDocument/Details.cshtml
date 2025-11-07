@@ -1,0 +1,26 @@
+﻿@model AdventureWorksUI.DTO.ProductDocumentViewModel
+
+@{
+    ViewData["Title"] = "Product Document Details";
+}
+
+<h2>Product Document Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Product ID</dt>
+            <dd class="col-sm-9">@Model.ProductId</dd>
+
+            <dt class="col-sm-3">Document Node</dt>
+            <dd class="col-sm-9">@Model.DocumentNode</dd>
+
+            <dt class="col-sm-3">Modified Date</dt>
+            <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-productId="@Model.ProductId" asp-route-documentNode="@Model.DocumentNode" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+

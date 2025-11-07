@@ -1,0 +1,17 @@
+﻿@model AdventureWorksUI.DTO.ProductListPriceHistoryViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+<h2>Details</h2>
+
+<div class="card p-3">
+    <p><strong>ID:</strong> @Model.ProductListPriceHistoryId</p>
+    <p><strong>Product ID:</strong> @Model.ProductId</p>
+    <p><strong>Start Date:</strong> @Model.StartDate.ToShortDateString()</p>
+    <p><strong>End Date:</strong> @(Model.EndDate?.ToShortDateString() ?? "N/A")</p>
+    <p><strong>List Price:</strong> @Model.ListPrice.ToString("C")</p>
+    <p><strong>Modified Date:</strong> @Model.ModifiedDate.ToShortDateString()</p>
+
+    <a asp-action="Edit" asp-route-id="@Model.ProductListPriceHistoryId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>

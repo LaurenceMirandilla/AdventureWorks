@@ -1,0 +1,28 @@
+﻿@model AdventureWorksUI.DTO.ProductCategoryViewModel
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h2>Category Details</h2>
+
+<div class="card p-4 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">@Model.ProductCategoryId</dd>
+
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Rowguid</dt>
+        <dd class="col-sm-9">@Model.Rowguid</dd>
+
+        <dt class="col-sm-3">Modified Date</dt>
+        <dd class="col-sm-9">@Model.ModifiedDate.ToShortDateString()</dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.ProductCategoryId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+

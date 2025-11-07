@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.ProductSubCategoryViewModel>
+
+@{
+    ViewData["Title"] = "Product Subcategories";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category ID</th>
+            <th>Name</th>
+            <th>RowGuid</th>
+            <th>Modified Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductSubcategoryId</td>
+                <td>@item.ProductCategoryId</td>
+                <td>@item.Name</td>
+                <td>@item.RowGuid</td>
+                <td>@item.ModifiedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProductSubcategoryId" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.ProductSubcategoryId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProductSubcategoryId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

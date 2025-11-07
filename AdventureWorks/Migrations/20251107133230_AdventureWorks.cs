@@ -135,9 +135,9 @@ namespace AdventureWorks.Migrations
                 {
                     ProductPhotoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ThumbNailPhoto = table.Column<byte>(type: "tinyint", nullable: true),
+                    ThumbNailPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThumbnailPhotoFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LargePhoto = table.Column<byte>(type: "tinyint", nullable: true),
+                    LargePhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LargePhotoFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

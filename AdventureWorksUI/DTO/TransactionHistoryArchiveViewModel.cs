@@ -1,0 +1,15 @@
+﻿namespace AdventureWorksUI.DTO
+{
+    public class TransactionHistoryArchiveViewModel
+    {
+        public int TransactionId { get; set; }
+        public int ProductId { get; set; }
+        public int ReferenceOrderId { get; set; }
+        public int ReferenceOrderLineId { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public char TransactionType { get; set; }
+        public int Quantity { get; set; }
+        public decimal ActualCost { get; set; }
+        public DateTime ModifiedDate { get; set; }
+    }
+}

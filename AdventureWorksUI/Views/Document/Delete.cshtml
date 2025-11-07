@@ -1,0 +1,12 @@
+﻿@model AdventureWorksUI.DTO.DocumentViewModel
+@{
+    ViewData["Title"] = "Delete Document";
+}
+<h2>Delete Document</h2>
+<p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="DocumentNode" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

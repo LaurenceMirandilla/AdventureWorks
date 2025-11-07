@@ -5,6 +5,8 @@ namespace AdventureWorks.DTO
     public class ProductCostHistoryDTO
     {
         [Required]
+        public int ProductCostHistoryId { get; set; }
+        [Required]
         public int ProductId { get; set; }
 
         [Required]

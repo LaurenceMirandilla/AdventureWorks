@@ -6,12 +6,12 @@ namespace AdventureWorks.DTO
     {
         public int ProductPhotoId { get; set; }
 
-        public byte[]? ThumbNailPhoto { get; set; }
+        public string? ThumbNailPhoto { get; set; }
 
         [StringLength(50)]
         public string? ThumbnailPhotoFileName { get; set; }
 
-        public byte[]? LargePhoto { get; set; }
+        public string? LargePhoto { get; set; }
 
         [StringLength(50)]
         public string? LargePhotoFileName { get; set; }

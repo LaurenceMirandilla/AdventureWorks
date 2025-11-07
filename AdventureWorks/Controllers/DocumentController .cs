@@ -1,5 +1,6 @@
 ﻿using AdventureWorks;
 using AdventureWorks.DTO;
+using AdventureWorks.UI.Controllers;
 using AdventureWorks.Model.Domain.Production;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;

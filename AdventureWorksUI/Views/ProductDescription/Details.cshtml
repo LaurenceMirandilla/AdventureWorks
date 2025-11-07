@@ -1,0 +1,26 @@
+﻿@model AdventureWorksUI.DTO.ProductDescriptionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Product Description Details</h2>
+
+<div class="card p-4 mt-3">
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">@Model.ProductDescriptionId</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">Rowguid</dt>
+        <dd class="col-sm-9">@Model.Rowguid</dd>
+
+        <dt class="col-sm-3">Modified Date</dt>
+        <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+    </dl>
+
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProductDescriptionId" class="btn btn-warning">Edit</a>
+</div>

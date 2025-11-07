@@ -1,0 +1,21 @@
+﻿@model AdventureWorksUI.DTO.ProductModelViewModel
+@{
+    ViewData["Title"] = "Delete Product Model";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">Are you sure you want to delete this Product Model?</div>
+
+<div class="card p-3 w-50">
+    <p><strong>ID:</strong> @Model.ProductModelId</p>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Catalog Description:</strong> @Model.CatalogDescription</p>
+    <p><strong>Instructions:</strong> @Model.Instructions</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ProductModelId" />
+    <button type="submit" class="btn btn-danger mt-2">Confirm Delete</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Cancel</a>
+</form>
+

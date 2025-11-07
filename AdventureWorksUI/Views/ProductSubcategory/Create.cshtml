@@ -1,0 +1,34 @@
+﻿@model AdventureWorksUI.DTO.ProductSubCategoryViewModel
+
+@{
+    ViewData["Title"] = "Create Product Subcategory";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ProductCategoryId"></label>
+        <input asp-for="ProductCategoryId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RowGuid"></label>
+        <input asp-for="RowGuid" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ModifiedDate"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

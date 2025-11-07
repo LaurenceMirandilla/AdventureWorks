@@ -1,0 +1,38 @@
+﻿@model AdventureWorksUI.DTO.ProductInventoryViewModel
+
+@{
+    ViewData["Title"] = "Product Inventory Details";
+}
+
+<h2>Product Inventory Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Inventory ID</dt>
+            <dd class="col-sm-9">@Model.ProductInventoryId</dd>
+
+            <dt class="col-sm-3">Product ID</dt>
+            <dd class="col-sm-9">@Model.ProductId</dd>
+
+            <dt class="col-sm-3">Location ID</dt>
+            <dd class="col-sm-9">@Model.LocationId</dd>
+
+            <dt class="col-sm-3">Shelf</dt>
+            <dd class="col-sm-9">@Model.Shelf</dd>
+
+            <dt class="col-sm-3">Bin</dt>
+            <dd class="col-sm-9">@Model.Bin</dd>
+
+            <dt class="col-sm-3">Quantity</dt>
+            <dd class="col-sm-9">@Model.Quantity</dd>
+
+            <dt class="col-sm-3">Modified Date</dt>
+            <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.ProductInventoryId" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+

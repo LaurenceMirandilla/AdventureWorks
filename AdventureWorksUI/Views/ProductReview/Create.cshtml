@@ -1,0 +1,47 @@
+﻿@model AdventureWorksUI.DTO.ProductReviewViewModel
+
+@{
+    ViewData["Title"] = "Create Product Review";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ProductId"></label>
+        <input asp-for="ProductId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReviewerName"></label>
+        <input asp-for="ReviewerName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmailAddress"></label>
+        <input asp-for="EmailAddress" type="email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" type="number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReviewDate"></label>
+        <input asp-for="ReviewDate" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

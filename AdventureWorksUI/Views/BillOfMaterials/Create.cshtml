@@ -1,0 +1,34 @@
+﻿@model AdventureWorks.UI.Models.BillOfMaterialsViewModel
+<h2>Create Bill Of Materials</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label>Product Assembly ID</label>
+        <input asp-for="ProductAssemblyId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Component ID</label>
+        <input asp-for="ComponentId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Quantity</label>
+        <input asp-for="PerAssemblyQty" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Unit Measure Code</label>
+        <input asp-for="UnitMeasureCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>BOM Level</label>
+        <input asp-for="BomLevel" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

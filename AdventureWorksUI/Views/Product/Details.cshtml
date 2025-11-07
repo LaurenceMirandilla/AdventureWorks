@@ -1,0 +1,67 @@
+﻿@model AdventureWorksUI.DTO.ProductDTO
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h2 class="mb-3">Product Details</h2>
+
+<div class="card p-4 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">Product ID</dt>
+        <dd class="col-sm-9">@Model.ProductId</dd>
+
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Product Number</dt>
+        <dd class="col-sm-9">@Model.ProductNumber</dd>
+
+        <dt class="col-sm-3">Make Flag</dt>
+        <dd class="col-sm-9">@Model.MakeFlag</dd>
+
+        <dt class="col-sm-3">Finished Goods Flag</dt>
+        <dd class="col-sm-9">@Model.FinishedGoodsFlag</dd>
+
+        <dt class="col-sm-3">Color</dt>
+        <dd class="col-sm-9">@Model.Color</dd>
+
+        <dt class="col-sm-3">Standard Cost</dt>
+        <dd class="col-sm-9">@Model.StandardCost</dd>
+
+        <dt class="col-sm-3">List Price</dt>
+        <dd class="col-sm-9">@Model.ListPrice</dd>
+
+        <dt class="col-sm-3">Size</dt>
+        <dd class="col-sm-9">@Model.Size</dd>
+
+        <dt class="col-sm-3">Product Line</dt>
+        <dd class="col-sm-9">@Model.ProductLine</dd>
+
+        <dt class="col-sm-3">Class</dt>
+        <dd class="col-sm-9">@Model.Class</dd>
+
+        <dt class="col-sm-3">Style</dt>
+        <dd class="col-sm-9">@Model.Style</dd>
+
+        <dt class="col-sm-3">Product Subcategory ID</dt>
+        <dd class="col-sm-9">@Model.ProductSubcategoryId</dd>
+
+        <dt class="col-sm-3">Product Model ID</dt>
+        <dd class="col-sm-9">@Model.ProductModelId</dd>
+
+        <dt class="col-sm-3">Sell Start Date</dt>
+        <dd class="col-sm-9">@Model.SellStartDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Sell End Date</dt>
+        <dd class="col-sm-9">@Model.SellEndDate?.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Discontinued Date</dt>
+        <dd class="col-sm-9">@Model.DiscontinuedDate?.ToShortDateString()</dd>
+
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+</div>

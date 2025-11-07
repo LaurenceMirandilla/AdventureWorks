@@ -35,16 +35,11 @@ namespace AdventureWorks.Controllers
 
             return Ok(new { total, data });
         }
-
-        [HttpGet("{productId}/{documentId}")]
-        public async Task<IActionResult> GetByKeyAsync(int productId, string documentNode)
-        {
-            var entity = await _context.ProductDocuments
-                .FirstOrDefaultAsync(pd => pd.ProductId == productId && pd.DocumentNode == documentNode);
-
-            if (entity == null) return NotFound();
-            return Ok(entity);
-        }
+            
+        [HttpGet("{id}")] public async Task<IActionResult> GetByKeyAsync(int id) 
+        { var entity = await _context.ProductInventories .Include(p => p.Product)
+        .FirstOrDefaultAsync(p => p.ProductInventoryId == id); if (entity == null)
+                return NotFound(); return Ok(entity); }
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] ProductDocumentDTO dto)
@@ -55,17 +50,17 @@ namespace AdventureWorks.Controllers
             _context.ProductDocuments.Add(entity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetByKeyAsync), new { productId = entity.ProductId, documentId = entity.DocumentNode }, entity);
+            return CreatedAtAction(nameof(GetByKeyAsync), new { productId = entity.ProductId, DocumentNode = entity.DocumentNode }, entity);
         }
 
-        [HttpPut("{productId}/{documentId}")]
-        public async Task<IActionResult> Update(int productId, string documentId, [FromBody] ProductDocumentDTO dto)
+        [HttpPut("{ProductInventoryid}/{DocumentNode}")]
+        public async Task<IActionResult> Update(int ProductInventoryid, string documentNode, [FromBody] ProductDocumentDTO dto)
         {
-            if (productId != dto.ProductId || documentId != dto.DocumentNode)
+            if (ProductInventoryid != dto.ProductId || documentNode != dto.DocumentNode)
                 return BadRequest("ID mismatch.");
 
             var entity = await _context.ProductDocuments
-                .FirstOrDefaultAsync(pd => pd.ProductId == productId && pd.DocumentNode == documentId);
+                .FirstOrDefaultAsync(pd => pd.ProductId == ProductInventoryid && pd.DocumentNode == documentNode);
 
             if (entity == null) return NotFound();
 
@@ -76,11 +71,11 @@ namespace AdventureWorks.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{productId}/{documentId}")]
-        public async Task<IActionResult> Delete(int productId, string documentNode)
+        [HttpDelete("{ProductInventoryid}/{DocumentNode}")]
+        public async Task<IActionResult> Delete(int ProductInventoryid, string documentNode)
         {
-            var entity = await _context.ProductDocuments
-                .FirstOrDefaultAsync(pd => pd.ProductId == productId && pd.DocumentNode == documentNode);
+            var entity = await _context.ProductDocuments    
+                .FirstOrDefaultAsync(pd => pd.ProductId == ProductInventoryid && pd.DocumentNode == documentNode);
 
             if (entity == null) return NotFound();
 

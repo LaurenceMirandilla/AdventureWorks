@@ -1,0 +1,67 @@
+﻿@model AdventureWorksUI.DTO.WorkOrderRoutingViewModel
+
+@{
+    ViewData["Title"] = "Create Work Order Routing";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="WorkOrderId"></label>
+        <input asp-for="WorkOrderId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OperationSequence"></label>
+        <input asp-for="OperationSequence" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductId"></label>
+        <input asp-for="ProductId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LocationId"></label>
+        <input asp-for="LocationId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ScheduledStartDate"></label>
+        <input asp-for="ScheduledStartDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ScheduledEndDate"></label>
+        <input asp-for="ScheduledEndDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ActualStartDate"></label>
+        <input asp-for="ActualStartDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ActualEndDate"></label>
+        <input asp-for="ActualEndDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ActualResourceHrs"></label>
+        <input asp-for="ActualResourceHrs" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PlannedCost"></label>
+        <input asp-for="PlannedCost" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ActualCost"></label>
+        <input asp-for="ActualCost" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ModifiedDate"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

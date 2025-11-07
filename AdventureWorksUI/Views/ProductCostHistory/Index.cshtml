@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.ProductCostHistoryViewModel>
+
+@{
+    ViewData["Title"] = "Product Cost History";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<a asp-action="Create" class="btn btn-success mb-3">Add New</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Standard Cost</th>
+            <th>Modified Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.EndDate?.ToString("yyyy-MM-dd")</td>
+                <td>@item.StandardCost.ToString("C")</td>
+                <td>@item.ModifiedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProductCostHistoryId" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.ProductCostHistoryId" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProductCostHistoryId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

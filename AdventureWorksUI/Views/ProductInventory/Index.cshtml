@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.ProductInventoryViewModel>
+
+@{
+    ViewData["Title"] = "Product Inventories";
+}
+
+<h2 class="mb-3">Product Inventories</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add New</a>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Inventory ID</th>
+            <th>Product ID</th>
+            <th>Location ID</th>
+            <th>Shelf</th>
+            <th>Bin</th>
+            <th>Quantity</th>
+            <th>Modified Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductInventoryId</td>
+                    <td>@item.ProductId</td>
+                    <td>@item.LocationId</td>
+                    <td>@item.Shelf</td>
+                    <td>@item.Bin</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.ModifiedDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ProductInventoryId" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.ProductInventoryId" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductInventoryId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="8" class="text-center">No records found.</td></tr>
+        }
+    </tbody>
+</table>
+

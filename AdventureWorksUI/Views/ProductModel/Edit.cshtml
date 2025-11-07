@@ -1,0 +1,25 @@
+﻿@model AdventureWorksUI.DTO.ProductModelViewModel
+@{
+    ViewData["Title"] = "Edit Product Model";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post" class="w-50">
+    <input type="hidden" asp-for="ProductModelId" />
+    <div class="mb-2">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label>Catalog Description</label>
+        <textarea asp-for="CatalogDescription" class="form-control"></textarea>
+    </div>
+    <div class="mb-2">
+        <label>Instructions</label>
+        <textarea asp-for="Instructions" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

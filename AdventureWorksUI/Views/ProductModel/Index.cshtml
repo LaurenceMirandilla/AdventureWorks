@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.ProductModelViewModel>
+@{
+    ViewData["Title"] = "Product Models";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" class="mb-3">
+    <input type="text" name="name" value=@Context.Request.Query["name"]" placeholder="Search by name" class="form-control w-25 d-inline" />
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-action="Create" class="btn btn-success">Add New</a>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Catalog Description</th>
+                <th>Instructions</th>
+                <th>Modified Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductModelId</td>
+                    <td>@item.Name</td>
+                    <td>@item.CatalogDescription</td>
+                    <td>@item.Instructions</td>
+                    <td>@item.ModifiedDate.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ProductModelId" class="btn btn-info btn-sm">View</a>
+                        <a asp-action="Edit" asp-route-id="@item.ProductModelId" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductModelId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.IllustrationViewModel>
+
+
+@{
+    ViewData["Title"] = "Illustrations";
+
+    DateTime? startDate = null;
+    DateTime? endDate = null;
+
+    var startQuery = Context?.Request?.Query["startDate"].FirstOrDefault();
+    var endQuery = Context?.Request?.Query["endDate"].FirstOrDefault();
+
+    if (DateTime.TryParse(startQuery, out var s))
+        startDate = s;
+
+    if (DateTime.TryParse(endQuery, out var e))
+        endDate = e;
+}
+
+
+<h2>Illustrations</h2>
+
+<form method="get" class="mb-3 d-flex align-items-end gap-2">
+    <div>
+        <label>Start Date</label>
+        <input type="date" name="startDate" value="@startDate" class="form-control" />
+    </div>
+    <div>
+        <label>End Date</label>
+        <input type="date" name="endDate" value="@endDate" class="form-control" />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mt-4">Filter</button>
+        <a asp-action="Index" class="btn btn-secondary mt-4">Reset</a>
+    </div>
+    <a asp-action="Create" class="btn btn-success mt-4 ms-auto">Add New</a>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Diagram</th>
+            <th>Modified</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IllustrationId</td>
+                <td>@(string.IsNullOrEmpty(item.Diagram) ? "None" : item.Diagram.Substring(0, Math.Min(30, item.Diagram.Length)) + "...")</td>
+                <td>@item.ModifiedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.IllustrationId" class="btn btn-info btn-sm">View</a>
+                    <a asp-action="Edit" asp-route-id="@item.IllustrationId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.IllustrationId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

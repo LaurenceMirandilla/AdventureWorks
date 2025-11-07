@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.ProductCategoryViewModel>
+@{
+    ViewData["Title"] = "Product Categories";
+    var search = @Context.Request.Query["search"].ToString();
+}
+
+<h2>Product Categories</h2>
+
+<form method="get" class="mb-3">
+    <input type="text" name="search" value="@search" placeholder="Search by name..." class="form-control w-25 d-inline" />
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-action="Create" class="btn btn-success float-end">Add New</a>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Modified</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductCategoryId</td>
+                <td>@item.Name</td>
+                <td>@item.ModifiedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProductCategoryId" class="btn btn-info btn-sm">View</a>
+                    <a asp-action="Edit" asp-route-id="@item.ProductCategoryId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProductCategoryId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

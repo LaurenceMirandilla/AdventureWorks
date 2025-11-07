@@ -1,0 +1,47 @@
+﻿@model AdventureWorksUI.DTO.WorkOrderViewModel
+
+@{
+    ViewData["Title"] = "Delete Work Order";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Are you sure you want to delete this Work Order?</h4>
+
+<dl class="row">
+    <dt class="col-sm-2">WorkOrder ID</dt>
+    <dd class="col-sm-10">@Model.WorkOrderId</dd>
+
+    <dt class="col-sm-2">Product ID</dt>
+    <dd class="col-sm-10">@Model.ProductId</dd>
+
+    <dt class="col-sm-2">Order Qty</dt>
+    <dd class="col-sm-10">@Model.OrderQty</dd>
+
+    <dt class="col-sm-2">Stocked Qty</dt>
+    <dd class="col-sm-10">@Model.StockedQty</dd>
+
+    <dt class="col-sm-2">Scrapped Qty</dt>
+    <dd class="col-sm-10">@Model.ScrappedQty</dd>
+
+    <dt class="col-sm-2">Scrap Reason</dt>
+    <dd class="col-sm-10">@Model.ScrapReasonId</dd>
+
+    <dt class="col-sm-2">Start Date</dt>
+    <dd class="col-sm-10">@Model.StartDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">End Date</dt>
+    <dd class="col-sm-10">@Model.EndDate?.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">Due Date</dt>
+    <dd class="col-sm-10">@Model.DueDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">Modified Date</dt>
+    <dd class="col-sm-10">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+</dl>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="WorkOrderId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

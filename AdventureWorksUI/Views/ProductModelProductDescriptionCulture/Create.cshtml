@@ -1,0 +1,42 @@
+﻿@model AdventureWorksUI.DTO.ProductModelProductDescriptionCultureViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ProductModelId"></label>
+        <input asp-for="ProductModelId" class="form-control" />
+        <span asp-validation-for="ProductModelId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductDescriptionId"></label>
+        <input asp-for="ProductDescriptionId" class="form-control" />
+        <span asp-validation-for="ProductDescriptionId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CultureId"></label>
+        <input asp-for="CultureId" class="form-control" />
+        <span asp-validation-for="CultureId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ModifiedDate"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+        <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

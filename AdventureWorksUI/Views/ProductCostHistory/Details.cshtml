@@ -1,0 +1,34 @@
+﻿@model AdventureWorksUI.DTO.ProductCostHistoryViewModel
+
+@{
+    ViewData["Title"] = "Product Cost History Details";
+}
+
+<div class="container mt-5">
+    <h2>Product Cost History Details</h2>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">Product ID</dt>
+        <dd class="col-sm-9">@Model.ProductId</dd>
+
+        <dt class="col-sm-3">Start Date</dt>
+        <dd class="col-sm-9">@Model.StartDate.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-3">End Date</dt>
+        <dd class="col-sm-9">@Model.EndDate?.ToString("yyyy-MM-dd") ?? "-"</dd>
+
+        <dt class="col-sm-3">Standard Cost</dt>
+        <dd class="col-sm-9">@Model.StandardCost</dd>
+
+        <dt class="col-sm-3">Modified Date</dt>
+        <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+    </dl>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        <a asp-action="Edit" asp-route-id="@Model.ProductId class="btn btn-warning">Edit</a>
+    </div>
+</div>
+
+z

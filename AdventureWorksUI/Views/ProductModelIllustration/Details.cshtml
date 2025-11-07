@@ -1,0 +1,30 @@
+﻿@model AdventureWorksUI.DTO.ProductModelIllustrationViewModel
+@{
+    ViewData["Title"] = "Details - Product Model Illustration";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Product Model Illustration Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Product Model Illustration ID</dt>
+        <dd class="col-sm-9">@Model.ProductModelIllustrationId</dd>
+
+        <dt class="col-sm-3">Product Model ID</dt>
+        <dd class="col-sm-9">@Model.ProductModelId</dd>
+
+        <dt class="col-sm-3">Illustration ID</dt>
+        <dd class="col-sm-9">@Model.IllustrationId</dd>
+
+        <dt class="col-sm-3">Modified Date</dt>
+        <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-productModelId="@Model.ProductModelId" asp-route-illustrationId="@Model.IllustrationId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+

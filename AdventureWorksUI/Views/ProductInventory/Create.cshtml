@@ -1,0 +1,43 @@
+﻿@model AdventureWorksUI.DTO.ProductInventoryViewModel
+
+@{
+    ViewData["Title"] = "Create Product Inventory";
+}
+
+<h2>Create Product Inventory</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="ProductId" class="form-label"></label>
+        <input asp-for="ProductId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LocationId" class="form-label"></label>
+        <input asp-for="LocationId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Shelf" class="form-label"></label>
+        <input asp-for="Shelf" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Bin" class="form-label"></label>
+        <input asp-for="Bin" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ModifiedDate" class="form-label"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

@@ -517,8 +517,8 @@ namespace AdventureWorks.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductPhotoId"));
 
-                    b.Property<byte?>("LargePhoto")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("LargePhoto")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LargePhotoFileName")
                         .HasColumnType("nvarchar(max)");
@@ -526,8 +526,8 @@ namespace AdventureWorks.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte?>("ThumbNailPhoto")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("ThumbNailPhoto")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbnailPhotoFileName")
                         .HasColumnType("nvarchar(max)");

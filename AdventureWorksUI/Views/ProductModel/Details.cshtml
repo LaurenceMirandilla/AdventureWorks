@@ -1,0 +1,17 @@
+﻿@model AdventureWorksUI.DTO.ProductModelViewModel
+@{
+    ViewData["Title"] = "Product Model Details";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="card p-3">
+    <p><strong>ID:</strong> @Model.ProductModelId</p>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Catalog Description:</strong> @Model.CatalogDescription</p>
+    <p><strong>Instructions:</strong> @Model.Instructions</p>
+    <p><strong>Modified Date:</strong> @Model.ModifiedDate.ToShortDateString()</p>
+
+    <a asp-action="Edit" asp-route-id="@Model.ProductModelId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>
+

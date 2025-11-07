@@ -1,0 +1,28 @@
+﻿@model AdventureWorks.UI.Models.BillOfMaterialsViewModel
+<h2>Bill Of Materials Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">BillOfMaterialsId</dt>
+    <dd class="col-sm-9">@Model.BillOfMaterialsId</dd>
+
+    <dt class="col-sm-3">ProductAssemblyId</dt>
+    <dd class="col-sm-9">@Model.ProductAssemblyId</dd>
+
+    <dt class="col-sm-3">ComponentId</dt>
+    <dd class="col-sm-9">@Model.ComponentId</dd>
+
+    <dt class="col-sm-3">PerAssemblyQty</dt>
+    <dd class="col-sm-9">@Model.PerAssemblyQty</dd>
+
+    <dt class="col-sm-3">UnitMeasureCode</dt>
+    <dd class="col-sm-9">@Model.UnitMeasureCode</dd>
+
+    <dt class="col-sm-3">BOM Level</dt>
+    <dd class="col-sm-9">@Model.BomLevel</dd>
+
+    <dt class="col-sm-3">Modified Date</dt>
+    <dd class="col-sm-9">@Model.ModifiedDate</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.BillOfMaterialsId" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>

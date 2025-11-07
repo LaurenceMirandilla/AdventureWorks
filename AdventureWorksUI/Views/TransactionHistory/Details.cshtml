@@ -1,0 +1,41 @@
+﻿@model AdventureWorksUI.DTO.TransactionHistoryViewModel
+
+@{
+    ViewData["Title"] = "Transaction Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">Transaction ID</dt>
+    <dd class="col-sm-10">@Model.TransactionId</dd>
+
+    <dt class="col-sm-2">Product ID</dt>
+    <dd class="col-sm-10">@Model.ProductId</dd>
+
+    <dt class="col-sm-2">Reference Order</dt>
+    <dd class="col-sm-10">@Model.ReferenceOrderId</dd>
+
+    <dt class="col-sm-2">Reference Line</dt>
+    <dd class="col-sm-10">@Model.ReferenceOrderLineId</dd>
+
+    <dt class="col-sm-2">Transaction Date</dt>
+    <dd class="col-sm-10">@Model.TransactionDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">Transaction Type</dt>
+    <dd class="col-sm-10">@Model.TransactionType</dd>
+
+    <dt class="col-sm-2">Quantity</dt>
+    <dd class="col-sm-10">@Model.Quantity</dd>
+
+    <dt class="col-sm-2">Actual Cost</dt>
+    <dd class="col-sm-10">@Model.ActualCost</dd>
+
+    <dt class="col-sm-2">Modified Date</dt>
+    <dd class="col-sm-10">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+</dl>
+
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>
+

@@ -1,0 +1,35 @@
+﻿@model AdventureWorksUI.DTO.ProductPhotoViewModel
+
+@{
+    ViewData["Title"] = "Edit Product Photo";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ProductPhotoId" />
+
+    <div class="form-group">
+        <label asp-for="ThumbnailPhotoFileName"></label>
+        <input asp-for="ThumbnailPhotoFileName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LargePhotoFileName"></label>
+        <input asp-for="LargePhotoFileName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ModifiedDate"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

@@ -1,0 +1,17 @@
+﻿@model AdventureWorksUI.DTO.CultureViewModel
+
+@{
+    ViewData["Title"] = "Culture Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p><strong>ID:</strong> @Model.CultureId</p>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Modified:</strong> @Model.ModifiedDate</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Back</a>

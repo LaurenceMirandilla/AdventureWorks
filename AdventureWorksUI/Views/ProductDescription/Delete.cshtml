@@ -1,0 +1,33 @@
+﻿@model AdventureWorksUI.DTO.ProductDescriptionViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete Product Description</h2>
+
+<div class="alert alert-danger mt-3">
+    <h5>Are you sure you want to delete this record?</h5>
+</div>
+
+<div class="card p-4 mt-3">
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">@Model.ProductDescriptionId</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">Rowguid</dt>
+        <dd class="col-sm-9">@Model.Rowguid</dd>
+
+        <dt class="col-sm-3">Modified Date</dt>
+        <dd class="col-sm-9">@Model.ModifiedDate.ToString("yyyy-MM-dd")</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="ProductDescriptionId" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

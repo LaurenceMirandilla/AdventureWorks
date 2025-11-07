@@ -1,0 +1,27 @@
+﻿@model AdventureWorksUI.DTO.ProductModelProductDescriptionCultureViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ProductModelId" />
+    <input type="hidden" asp-for="ProductDescriptionId" />
+    <input type="hidden" asp-for="CultureId" />
+
+    <div class="form-group">
+        <label asp-for="ModifiedDate"></label>
+        <input asp-for="ModifiedDate" type="date" class="form-control" />
+        <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

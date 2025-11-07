@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.TransactionHistoryViewModel>
+
+@{
+    ViewData["Title"] = "Transaction History";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product ID</th>
+            <th>Reference Order</th>
+            <th>Reference Line</th>
+            <th>Transaction Date</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Actual Cost</th>
+            <th>Modified Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TransactionId</td>
+                <td>@item.ProductId</td>
+                <td>@item.ReferenceOrderId</td>
+                <td>@item.ReferenceOrderLineId</td>
+                <td>@item.TransactionDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.TransactionType</td>
+                <td>@item.Quantity</td>
+                <td>@item.ActualCost</td>
+                <td>@item.ModifiedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.TransactionId" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.TransactionId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.TransactionId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdventureWorksUI.DTO.WorkOrderRoutingViewModel>
+
+@{
+    ViewData["Title"] = "Work Order Routings";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>WorkOrder ID</th>
+            <th>Operation Sequence</th>
+            <th>Product ID</th>
+            <th>Location ID</th>
+            <th>Scheduled Start</th>
+            <th>Scheduled End</th>
+            <th>Actual Start</th>
+            <th>Actual End</th>
+            <th>Planned Cost</th>
+            <th>Actual Cost</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.WorkOrderId</td>
+                <td>@item.OperationSequence</td>
+                <td>@item.ProductId</td>
+                <td>@item.LocationId</td>
+                <td>@item.ScheduledStartDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.ScheduledEndDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.ActualStartDate?.ToString("yyyy-MM-dd")</td>
+                <td>@item.ActualEndDate?.ToString("yyyy-MM-dd")</td>
+                <td>@item.PlannedCost</td>
+                <td>@item.ActualCost</td>
+                <td>
+                    <a asp-action="Details" asp-route-workOrderId="@item.WorkOrderId" asp-route-operationSequence="@item.OperationSequence" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-workOrderId="@item.WorkOrderId" asp-route-operationSequence="@item.OperationSequence" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-workOrderId="@item.WorkOrderId" asp-route-operationSequence="@item.OperationSequence" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
